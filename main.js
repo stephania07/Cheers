@@ -1,20 +1,32 @@
+var $form = document.querySelector('#main');
+var $button = $form.querySelector("input[type='button']");
+$(button).on('click', function(event) {
+	event.preventDefault();
+  var $input = document.querySelector('#name').value;
+  var cheerText = fullCheer($input);
+  displayCheer(cheerText);
+});
+function displayCheer(cheerText){
+  var $div = document.querySelector('#cheer');
+  $div.innerHTML = cheerText;
+}
+
 function preamble(name) {
-  return "Your name is " + name + "!";
+  return "Your name is " + name + ".";
 }
 // Second Refactor:
 function cheerFor(name){
-  return name.split('').map(function(letter){
-    return "Give me a... " + letter + "!"
-  }).join("\n");
-
-  // This is equivalent to:
-  // var nameArray = name.split(''); // ['A', 'L']
-  // var cheersArray = nameArray.map(function(letter){
-    // return "Give me a... " + letter + "!"
-  // });
-  // return cheersArray.join("\n");
+  return $.map(name.split(''), function(letter){
+    return "Give me a... " + letter.toUpperCase();
+  }).join("<br>");
 }
-
+  // This is equivalent to:
+//var nameArray = name.split(''); // ['A', 'L']
+// var cheersArray = nameArray.map(function(letter){
+//   return "Give me a... " + letter + "!"
+//   });
+//    return cheersArray.join("<br>");
+//}
 // First Refactor:
 // function cheerFor(name){
 //   var cheer = [];
@@ -36,31 +48,24 @@ function cheerFor(name){
 //   return cheer;
 // }
 
-function namesWithHyphen(name){
-  return name;
+function fullCheer(name) {
+  return preamble(name) + "<br>" + letters(name) + "<br>" + afterword(name);
+}
+function afterword(name){
+  return name + " is great!";
+}
+function letters(name) {
+  return $.map(name.toUpperCase().split(''), function(letter){ 
+      if(letter === 'A' || letter === 'E' || letter === 'F' ||
+   	   letter === 'H' || letter === 'I' || letter === 'L' ||
+   	   letter === 'M' || letter === 'N' || letter === 'O' ||
+   	   letter === 'R' || letter === 'S' || letter === 'X') {
+        return "Give me an... "  + letter;
+      } else {
+        return "Give me a... "  + letter;
+      }
+    }).join("<br>"); 
 }
 
-function namesWithSpaces(name) {
-  return name;
-}
 
-function twiceOfFour(x) {
-  return x * x;
-}
-function quadOfTen(y) {
-  return y*y*y*y;
-}
 
-function divisionOfTwo(z) {
-  return z / 2;
-}
-
-function lowercaseName(name) {
-  return name.toLowerCase();
-}
-
-function lettersWithAn(letters){
-	for (var i = 0; i < letters.length; i++) {
-  	 return "an " + letters[i];
-  }
-}

@@ -6,10 +6,18 @@
   <link rel="stylesheet" href="//code.jquery.com/qunit/qunit-1.15.0.css">
 </head>
 <body>
+  <form id="main">
+    <label> What is your name?</label><br>
+    <input type="text" id="name" value=" ">
+    <input type="button" id="button" value="Cheer">
+    <div id="cheer"></div>
+  </form>
   <div id="qunit"></div>
   <div id="qunit-fixture"></div>
   <script src="//code.jquery.com/qunit/qunit-1.15.0.js"></script>
-  <script src="tests.js"></script>
+  <script src="jquery-1.11.1.js"></script>
   <script type="text/javascript" src="main.js"></script>
+  <script type="text/javascript" src="tests.js"></script>
+  
 </body>
 </html>
